@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rust-app-cronjob
+spec:
+  schedule: "0 */12 * * *"
+  concurrencyPolicy: Forbid           # Não inicia nova execução se já houver uma rodando
+  startingDeadlineSeconds: 600        # Opcional: tempo limite para iniciar após o horário agendado (10 min)
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 3600     # Tempo máximo de execução do job (1 hora)
+      backoffLimit: 1                 # Número de tentativas em caso de falha
+      template:
+        metadata:
+          labels:
+            app: rust-app
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: rust-app
+            image: <seu-register/rust-app:latest
+            imagePullPolicy: IfNotPresent
