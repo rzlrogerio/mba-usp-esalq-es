@@ -1,0 +1,1 @@
+/hd-external/GDrive-local/1-POS/mba_eng_soft_usp/1-tcc/monografia/git/mba-usp-esalq-es/codes/comparativo/rust/target/release/check_cert_rust: /hd-external/GDrive-local/1-POS/mba_eng_soft_usp/1-tcc/monografia/git/mba-usp-esalq-es/codes/comparativo/rust/src/main.rs

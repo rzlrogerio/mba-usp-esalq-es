@@ -1,0 +1,15 @@
+// Generated from resultado.txt
+digraph G {
+  // layout: vertical bars (bottom-to-top)
+  graph [rankdir=BT, bgcolor=white, splines=false]
+  node [shape=box, style=filled, width=1.6, fixedsize=true, fontname="Helvetica", fontsize=10, margin=0.05]
+
+  // Values (ms)
+  // Shell: avg 14.723305 ms
+  // Rust:  avg 4.187648 ms
+
+  Shell [label="Shell\n14.723305 ms", height=1.4723305, fillcolor="#ff9999"]
+  Rust  [label="Rust\n4.187648 ms",   height=0.4187648, fillcolor="#99ccff"]
+
+  { rank = same; Shell; Rust }
+}

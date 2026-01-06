@@ -1,0 +1,4 @@
+Benchmark (cert: certs/cert.pem, iterations: 20)
+Shell: avg 14.723305 ms | min 14.148807 ms | max 16.344540 ms
+Rust:  avg 4.187648 ms | min 3.957224 ms | max 4.546228 ms
+Speedup: Rust is 3.52x faster (avg)

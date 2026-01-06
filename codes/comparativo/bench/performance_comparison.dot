@@ -1,0 +1,38 @@
+digraph PerformanceComparison {
+  graph [rankdir=TB, bgcolor="white"];
+  node [shape=none, margin=0];
+  labelloc="t";
+  label=<<B>Comparativo de desempenho (média em ms)</B>>;
+  fontsize=14;
+
+  /* Valores extraídos de resultado.txt */
+  /* Shell avg = 14.723305 ms */
+  /* Rust  avg = 4.187648 ms  */
+
+  bars [label=<
+    <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="20">
+      <TR>
+        <!-- Shell bar: top spacer 0, bar 300 -->
+        <TD>
+          <TABLE BORDER="0" CELLBORDER="0" CELLPADDING="0" CELLSPACING="0">
+            <TR><TD HEIGHT="0"/></TR>
+            <TR><TD BGCOLOR="#ff9999" HEIGHT="300" WIDTH="120"></TD></TR>
+          </TABLE>
+        </TD>
+
+        <!-- Rust bar: top spacer 215, bar 85 -->
+        <TD>
+          <TABLE BORDER="0" CELLBORDER="0" CELLPADDING="0" CELLSPACING="0">
+            <TR><TD HEIGHT="215"/></TR>
+            <TR><TD BGCOLOR="#99ccff" HEIGHT="85" WIDTH="120"></TD></TR>
+          </TABLE>
+        </TD>
+      </TR>
+
+      <TR>
+        <TD ALIGN="CENTER">Shell<br/>14.723 ms</TD>
+        <TD ALIGN="CENTER">Rust<br/>4.188 ms</TD>
+      </TR>
+    </TABLE>
+  >];
+}
