@@ -114,8 +114,18 @@ fn process_certificates(client: &Client, zabbix_api: &str, zabbix_user: &str, za
                     let cert_data = fs::read(&path).expect("Failed to read certificate file");
                     let cert = X509::from_pem(&cert_data).expect("Failed to parse certificate");
                     let expiry_date = cert.not_after().to_string();
-                    let expiry_date = DateTime::parse_from_rfc2822(&expiry_date)
-                        .expect("Failed to parse expiry date")
+                    let mut expiry_norm = expiry_date.clone();
+                    if expiry_norm.ends_with(" GMT") {
+                        expiry_norm = expiry_norm.trim_end_matches(" GMT").to_string() + " +0000";
+                    } else if expiry_norm.ends_with(" UTC") {
+                        expiry_norm = expiry_norm.trim_end_matches(" UTC").to_string() + " +0000";
+                    }
+
+                    let expiry_date = DateTime::parse_from_str(&expiry_norm, "%b %e %H:%M:%S %Y %z")
+                        .or_else(|_| DateTime::parse_from_str(&expiry_norm, "%b %d %H:%M:%S %Y %z"))
+                        .or_else(|_| DateTime::parse_from_rfc2822(&expiry_norm))
+                        .or_else(|_| DateTime::parse_from_str(&expiry_norm, "%Y%m%d%H%M%SZ"))
+                        .unwrap_or_else(|_| panic!("Failed to parse expiry date: {}", expiry_date))
                         .with_timezone(&Utc);
 
                     check_days(&path, expiry_date, client, zabbix_api, zabbix_user, zabbix_pass);
